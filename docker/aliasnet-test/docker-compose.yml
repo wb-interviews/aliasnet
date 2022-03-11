@@ -1,0 +1,25 @@
+version: '2'
+services:
+    webapp:
+        container_name: aliasnet-web
+        build:
+            context: ./
+            dockerfile: Dockerfile-PHP
+        volumes:
+            - "../../:/var/www/html/"
+            - "./000-default.conf:/etc/apache2/sites-available/000-default.conf"
+        privileged: true
+        working_dir: /var/www/html
+        command: /usr/sbin/apache2ctl -D FOREGROUND
+
+    mysql-server:
+        container_name: aliasnet-mysql
+        image: mysql:8
+        environment:
+            MYSQL_ROOT_PASSWORD: "tc8jDcnuJVG8nK7K3ycJ4"
+            MYSQL_USER: "9mdbXZxUyAhRdQGhteXtC"
+            MYSQL_PASSWORD: "SdA8bm9kHhFW2mQqhJFg8"
+            MYSQL_DATABASE: "laravel"
+
+
+
